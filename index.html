@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Code & The Blueprint</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Space+Mono&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    color:white;
+    font-family: 'Playfair Display', serif;
+    overflow:hidden;
+}
+
+#container{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px;
+    background:radial-gradient(circle at center, #111, #000);
+    cursor:pointer;
+}
+
+#image-bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0.25;
+    transition:1.5s ease;
+}
+
+#story-box{
+    position:relative;
+    max-width:900px;
+    z-index:2;
+}
+
+.chapter{
+    font-family:'Space Mono', monospace;
+    letter-spacing:3px;
+    color:#aaa;
+    margin-bottom:20px;
+}
+
+.text{
+    font-size:26px;
+    line-height:1.6;
+    opacity:0;
+    transform:translateY(20px);
+    transition:1s ease;
+}
+
+.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.glow{
+    text-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+
+#hint{
+    position:fixed;
+    bottom:30px;
+    width:100%;
+    text-align:center;
+    font-size:14px;
+    color:#777;
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+    <div id="image-bg"></div>
+
+    <div id="story-box">
+        <div class="chapter" id="chapter-title"></div>
+        <div class="text glow" id="story-text"></div>
+    </div>
+</div>
+
+<div id="hint">Click anywhere to continue ✨</div>
+
+<script>
+const chapters = [
+{
+title: "Prologue — The Code & The Blueprint",
+lines: [
+"In a world wired with dreams and WiFi...",
+"Two destinies were quietly syncing.",
+"Not by accident.",
+"But by architecture of the heart.",
+"One was a Coder — Prince Darshu.",
+"The other — a visionary Architect — Princess Chinu."
+],
+image: "images/1.png"
+},
+
+{
+title: "Chapter 1 — The Glitch in the World",
+lines: [
+"It was the era of Masks and Lockdowns.",
+"The world pressed pause.",
+"Empty streets. Silent classrooms.",
+"People reduced to tiny pixels on screens.",
+"But in that frozen world...",
+"Prince Darshu was booting up his story."
+],
+image: "images/2.png"
+},
+
+{
+title: "Chapter 2 — The Variable in Maths Class",
+lines: [
+"Class 11. Endless integrals. Endless limits.",
+"The teacher spoke of derivatives.",
+"But Darshu discovered a new variable.",
+"Not x. Not y.",
+"It was Chinu.",
+"An Architect with stardust in her eyes.",
+"And suddenly... numbers felt like poetry."
+],
+image: "images/3.png"
+},
+
+{
+title: "Chapter 3 — The Ghost Protocol",
+lines: [
+"They didn’t speak with voices.",
+"They spoke with streaks.",
+"Snapchat first — behind cute filters.",
+"Then Telegram — where nights felt infinite.",
+"Darshu loved her logic.",
+"Chinu loved his imagination.",
+"And in between texts...",
+"Their souls synced."
+],
+image: "images/4.png"
+},
+
+{
+title: "Chapter 4 — Cinema on the Cloud",
+lines: [
+"They couldn’t meet at a theater.",
+"So they built one in their chat.",
+"'Mujhse Dosti Karogi' played.",
+"Darshu said: 'Let’s be friends.'",
+"But his heart screamed:",
+"'I want to love her.'"
+],
+image: "images/5.png"
+},
+
+{
+title: "Chapter 5 — The Great Divide",
+lines: [
+"Then destiny drew a line.",
+"Darshu marched to Nashik — the land of code.",
+"Chinu flew to Pune — the city of dreams.",
+"The distance wasn’t just maps.",
+"It was aching silence."
+],
+image: "images/6.png"
+},
+
+{
+title: "Chapter 6 — The 404 Error",
+lines: [
+"One year.",
+"365 silent days.",
+"No messages. No calls.",
+"Just memories saved in the cache.",
+"Darshu’s code felt hollow.",
+"Chinu’s buildings felt empty.",
+"It was a break...",
+"But not a goodbye."
+],
+image: "images/7.png"
+},
+
+{
+title: "Chapter 7 — The System Reboot",
+lines: [
+"A single 'Hey' changed everything.",
+"The server came back online.",
+"The timeline stitched itself again.",
+"Darshu realized:",
+"No language was as complex as Chinu.",
+"And no design as beautiful."
+],
+image: "images/8.png"
+},
+
+{
+title: "Chapter 8 — The Pune Pilgrimage",
+lines: [
+"Nashik to Pune — again and again.",
+"Every trip a promise.",
+"Cafés, coffee, long walks.",
+"Inside jokes. Shared silences.",
+"Darshu didn’t just visit a city...",
+"He found his home in Chinu."
+],
+image: "images/9.png"
+},
+
+{
+title: "Chapter 9 — The Resolution (Jan 1, 2026)",
+lines: [
+"The clock struck midnight.",
+"A new year was born.",
+"Darshu looked at Chinu.",
+"And knew in his bones:",
+"She wasn’t just his love.",
+"She was his foundation."
+],
+image: "images/10.png"
+},
+
+{
+title: "Chapter 10 — The Masterpiece",
+lines: [
+"Today is Propose Day.",
+"But Darshu doesn’t want just a day.",
+"He wants a lifetime.",
+"Chinu designs the home...",
+"Darshu builds the website.",
+"She draws the dreams...",
+"He codes them into reality."
+],
+image: "images/11.png"
+},
+
+{
+title: "Final Question",
+lines: [
+"Not as a fairytale.",
+"Not as a movie.",
+"But as real life...",
+"Princess Chinu...",
+"Will you be Prince Darshu’s Player 2 forever?"
+],
+image: "images/12.png"
+}
+];
+
+let chapterIndex = 0;
+let lineIndex = 0;
+
+const chapterTitle = document.getElementById("chapter-title");
+const storyText = document.getElementById("story-text");
+const imageBg = document.getElementById("image-bg");
+
+function showLine(){
+    if(chapterIndex >= chapters.length) return;
+
+    const current = chapters[chapterIndex];
+
+    chapterTitle.innerText = current.title;
+    imageBg.style.backgroundImage = `url(${current.image})`;
+
+    if(lineIndex < current.lines.length){
+        storyText.innerText = current.lines[lineIndex];
+        storyText.classList.remove("visible");
+        setTimeout(()=>storyText.classList.add("visible"),100);
+        lineIndex++;
+    } 
+    else {
+        chapterIndex++;
+        lineIndex = 0;
+        setTimeout(showLine,800);
+    }
+}
+
+document.body.addEventListener("click", showLine);
+showLine();
+</script>
+
+</body>
+</html>
